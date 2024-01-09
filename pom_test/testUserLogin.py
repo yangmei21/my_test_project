@@ -33,8 +33,10 @@ class TestUserLogin(object):
         sleep(2)
 
         # 验证
-        expected == self.driver.find_element(By.ID, 'LabErr').text
+        assert expected == self.driver.find_element(By.ID, 'LabErr').text
 
+    def teardown_class(self):
+        self.driver.quit()
 
 if __name__ == '__main__':
     pytest.main(['-sv', 'testUserLogin.py'])

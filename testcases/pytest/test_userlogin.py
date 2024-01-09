@@ -21,6 +21,13 @@ class TestUserLogin(object):
 
     @pytest.mark.parametrize('username,pwd,excepted', login_data)
     def test_uesr_err_login(self, username, pwd, excepted):
+        '''
+        验证登录异常情况（异常用例）
+        :param username: username
+        :param pwd: pwd
+        :param excepted: excepted
+        :return: err
+        '''
         self.driver.find_element(By.ID,'txtUName').clear()
         self.driver.find_element(By.ID, 'txtUName').send_keys(username)
 
@@ -33,6 +40,10 @@ class TestUserLogin(object):
         assert err == excepted
 
     def test_uesr_ok_login(self):
+        '''
+        验证正常登录用例：正确的用户名及密码
+        :return:
+        '''
         self.driver.find_element(By.ID,'txtUName').clear()
         self.driver.find_element(By.ID, 'txtUName').send_keys('13039131596')
 

@@ -10,6 +10,7 @@ class TestUserLogin(object):
 
     def setup_class(self):
         self.driver = webdriver.Chrome()
+        sleep(2)
         self.driver.get('http://novel.hctestedu.com/user/login.html')
         self.driver.maximize_window()
 

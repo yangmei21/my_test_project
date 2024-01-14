@@ -23,10 +23,10 @@ class TestFoodmanag(object):
         '''
         添加美食成功
         '''
-        food_name = 'test1'
-        food_detail = 'test2'
-        food_add = 'test3'
-        food_phone = 'test4'
+        food_name = '四月居酒屋(哈西店)'
+        food_detail = '四月居酒屋是一家提供正宗日式美食的餐厅，环境典雅，服务周到。这里提供的每一道菜品都充满了日式的精致与匠心独运。在樱花日本料理，您可以品尝到新鲜美味的刺身、寿司、天妇罗以及各种传统的日本料理。'
+        food_add = '黑龙江省哈尔滨市南岗区和谐大道396号'
+        food_phone = '暂无'
 
         # 点击关闭弹框
         sleep(2)
@@ -65,7 +65,7 @@ class TestFoodmanag(object):
 
         # 定位并选择自己想要勾选的分类
         for option in options:
-            if option.text == "火锅":
+            if option.text == "日料":
                 option.click()
                 break
         sleep(2)
@@ -73,12 +73,12 @@ class TestFoodmanag(object):
         # 上传商家图片
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept-manage-modal/div/form/nz-form-item[2]/nz-form-control/div/div/div[1]/nz-upload/div/div/input').send_keys(
-            r"F:\picture\test\pic8.png")
+            r"F:\picture\test\pic1.png")
 
         # 上传商家缩略图
         upload_element = self.login.driver.find_element(By.XPATH,
                                                         '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept-manage-modal/div/form/nz-form-item[3]/nz-form-control/div/div/div[1]/nz-upload/div/div/input')
-        upload_element.send_keys(r"F:\picture\test\pic9.png")
+        upload_element.send_keys(r"F:\picture\test\pic2.png")
         # upload_element.send_keys(Keys.RETURN)
 
         # 填写商家店名称
@@ -97,23 +97,23 @@ class TestFoodmanag(object):
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept-manage-modal/div/form/nz-form-item[9]/nz-form-control/div/div/input').send_keys(
             food_phone)
-        sleep(5)
+        sleep(1)
         # 选择开放起始时间
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept-manage-modal/div/form/nz-form-item[7]/nz-form-control/div/div/nz-time-picker/div/input').send_keys(
-            "8:30")
+            "11:00")
         # 选择开放截至时间
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept-manage-modal/div/form/nz-form-item[8]/nz-form-control/div/div/nz-time-picker/div/input').send_keys(
-            "23:00")
+            "22:00")
         sleep(2)
 
         # 定义套餐字段内容
-        pack_name = '1'
-        pack_datil = '2'
-        pack_price = '3'
-        ngredients = '4'
-        order = '5'
+        pack_name = '天妇罗拼盘'
+        pack_datil = '天妇罗拼盘是一道充满日式风味的炸菜拼盘，各种蔬菜和海鲜裹上面糊后炸至金黄酥脆，搭配特制的天妇罗酱汁，口感香脆可口。'
+        pack_price = '99'
+        ngredients = '虾、茄子、南瓜、青椒、紫菜、面粉、天妇罗酱汁'
+        order = '1'
         # 点击新增套餐
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept-manage-modal/div/form/nz-form-item[10]/nz-form-control/div/div/div[1]/a/span').click()
@@ -124,7 +124,7 @@ class TestFoodmanag(object):
         # 上传套餐图片
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/div[2]/div[4]/div/nz-modal-container/div/div/div[2]/app-dept-manage-modal/form/nz-form-item[1]/nz-form-control/div/div/div[1]/nz-upload/div/div/input').send_keys(
-            r"F:\picture\test\pic8.png")
+            r"F:\picture\test\pic4.png")
         sleep(2)
         # 套餐名称
         self.login.driver.find_element(By.XPATH,
@@ -152,11 +152,11 @@ class TestFoodmanag(object):
                                        '/html/body/div[2]/div[4]/div/nz-modal-container/div/div/div[3]/button[1]').click()
 
         # 定义菜品字段内容
-        Dishes_name = '1'
-        Dishes_datil = '2'
-        Dishes_price = '3'
-        Dishes_main = '4'
-        Dishes_acc = '5'
+        Dishes_name = '刺身拼盘'
+        Dishes_datil = '一份汇聚了新鲜刺身的拼盘，包括三文鱼、金枪鱼、鲷鱼等，每一片刺身都鲜嫩可口，让您尽情享受刺身的美味。'
+        Dishes_price = '198'
+        Dishes_main = '三文鱼、金枪鱼、鲷鱼'
+        Dishes_acc = '冰块、酱油、芥末酱'
         Dishes_order = '1'
         # 点击新建菜品
         self.login.driver.find_element(By.XPATH,
@@ -179,7 +179,7 @@ class TestFoodmanag(object):
         # 上传菜品图片
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/div[2]/div[4]/div/nz-modal-container/div/div/div[2]/app-dept-manage-modal/form/nz-form-item[2]/nz-form-control/div/div/div[1]/nz-upload/div/div/input').send_keys(
-            r"F:\picture\test\pic8.png")
+            r"F:\picture\test\pic3.png")
         # 填写菜品名称
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/div[2]/div[4]/div/nz-modal-container/div/div/div[2]/app-dept-manage-modal/form/nz-form-item[3]/nz-form-control/div/div/input').send_keys(
@@ -204,7 +204,7 @@ class TestFoodmanag(object):
 
         # 定位并选择自己想要勾选的分类
         for option in options:
-            if option.text == "盘":
+            if option.text == "份":
                 option.click()
                 break
         sleep(2)

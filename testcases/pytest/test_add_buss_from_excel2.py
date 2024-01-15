@@ -28,7 +28,7 @@ class Test_regist_buss(object):
                 "bus_add": row[4],
                 "bus_time": row[5],
                 "bus_part": row[6],
-                "bus_status":row[7]
+                "bus_status": row[7]
             })
 
         workbook.close()
@@ -46,42 +46,27 @@ class Test_regist_buss(object):
         self.login.driver.find_element(By.LINK_TEXT, '商家注册').click()
         sleep(1)
 
-
     @pytest.mark.dependency(depends=['admin_login'], scope='module')
-    @pytest.mark.parametrize('test_data',read_excel('D://test_data//add_buss.xlsx'))
-    def test_regist_buss(self,test_data):
+    @pytest.mark.parametrize('test_data', read_excel('D://test_data//add_buss.xlsx'))
+    def test_regist_buss(self, test_data):
         """
         注册商家信息提交
         :return:
         """
-        # bus_name = '新天地科技有限公司'
-        # bus_code = '91440101MA5D7Q8A7J'
-        # Represen = '李华'
-        # bus_money = '660'
-        # bus_add = '广州市天河区珠江新城珠江西路8号1501室'
-        # bus_time = '长期有效'
-        # bus_part = '电子产品的研发、生产和销售，技术服务。'
 
-        # # 点击关闭弹框
-        # self.login.driver.find_element(By.XPATH, '//*[@id="driver-popover-item"]/div[4]/button').click()
-        # # 点击仪表盘(默认打开的)
-        # # self.login.driver.find_element(By.XPATH,
-        # #                                '//*[@id="menuNav"]/div[1]/app-side-nav/div/div[2]/app-nav-bar/ul/li[1]/div[1]').click()
-        # # 点击商家注册
-        # self.login.driver.find_element(By.LINK_TEXT, '商家注册').click()
-        # sleep(1)
-
+        self.login.driver.refresh()
+        sleep(2)
         # 获取商家注册列表数
         total_regist = util.get_total(self.login.driver, '.ant-pagination-total-text')
         print('该列表总数：', total_regist)
 
         # 点击新建按钮
         self.login.driver.find_element(By.XPATH,
-                                       '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept/div/app-card-table-wrap/nz-card/div[1]/div/div[2]/div/div[1]/button').click()
+                                       "//button[@nztype='primary']").click()
         sleep(2)
         # 页面最大化
-        self.login.driver.find_element(By.XPATH,
-                                       '//*[@id="cdk-overlay-2"]/nz-modal-container/div/div/button/span/div/span[1]').click()
+        # self.login.driver.find_element(By.CSS_SELECTOR,
+        #                                'span.hover-blue.full-height.flex-auto.text-right.d-i-b.ng-tns-c89-0 i.anticon-fullscreen').click()
 
         # 上传法人身份证
         upload_element = self.login.driver.find_element(By.XPATH,
@@ -101,12 +86,12 @@ class Test_regist_buss(object):
         self.login.driver.find_element(By.NAME, 'legalRepresentative').send_keys(test_data["Represen"])
         # 经营状态选择
         self.login.driver.find_element(By.XPATH,
-                                       '//*[@id="cdk-overlay-2"]/nz-modal-container/div/div/div[2]/app-dept-manage-modal/form/div[3]/div[2]/nz-form-item/nz-form-control/div/div/nz-select').click()
+                                       '//*[@id="cdk-overlay-2"]/nz-modal-container/div/div/div[2]/app-dept-manage-modal/form/div[3]/div[2]/nz-form-item/nz-form-control/div/div/nz-select/nz-select-top-control').click()
         sleep(1)
 
         options = WebDriverWait(self.login.driver, 5).until(
             EC.visibility_of_all_elements_located((By.XPATH,
-                                                   '//*[@id="cdk-overlay-3"]/nz-option-container/div/cdk-virtual-scroll-viewport/div[1]/nz-option-item/div'))
+                                                   '//*[@id="cdk-overlay-3"]/nz-option-container/div/cdk-virtual-scroll-viewport/div[1]/nz-option-item'))
         )
 
         # 定位并选择自己想要勾选的分类
@@ -144,4 +129,4 @@ class Test_regist_buss(object):
 
 
 if __name__ == '__main__':
-    pytest.main(['-vs','test_add_buss_from excel','--reruns=2'])
+    pytest.main(['-vs', 'test_add_buss_from excel', '--reruns=2'])

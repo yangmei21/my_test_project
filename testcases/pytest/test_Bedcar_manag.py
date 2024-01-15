@@ -21,7 +21,7 @@ class TestRVmanag(object):
     @pytest.mark.dependency(depends=['admin_login'], scope='module')
     def test_add_RV(self):
         '''添加床车成功'''
-        Bedcar_name = '自在旅途床车店'
+        Bedcar_name = '11自在旅途床车店'
         Bedcar_detail = '自在旅途床车店是一家专注于提供床车自驾游服务的商家。我们提供多种款式的床车，以及详细的自驾游攻略，让您在旅途中尽情享受自由和舒适。'
         Bedcar_add = '成都市武侯区人民南路四段8号附2号'
         Bedcar_phone = '028-66667890'

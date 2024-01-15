@@ -9,7 +9,7 @@ import pytest
 class TestUserLogin(object):
 
     def setup_class(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Firefox()
         sleep(2)
         self.driver.get('http://novel.hctestedu.com/user/login.html')
         self.driver.maximize_window()

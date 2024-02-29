@@ -16,29 +16,29 @@ from testcases.pytest.test_login import TestAdminLogin
 from util import util
 
 '''
-商家发布信息审核:
-取消删除:test_del_cancel_publish_buss
-删除:test_del_succ_publish_buss
-审核:test_Audit_publish_buss
+技术论坛发布审核:
+取消删除:test_del_cancel_Technical_Forum
+删除:test_del_succ_Technical_Forum
+审核:test_Audit_Technical_Forum
 --->这里的操作会存在：审核不通过后数据移到最后一条数据所以要额外写断言，找到位置并进行核对是否状态成功。
 数据过多我会把数据先进行状态筛选，然后分别操作o(*￣▽￣*)ブ
 
-不存在查询：test_search_publish_buss_not_exist
-存在的查询：test_search_publish_buss_exist
+不存在查询：test_search_Technical_Forum_not_exist
+存在的查询：test_search_Technical_Forum_exist
 '''
 
 
-class Test_Audit_publish_buss(object):
+class Test_Audit_Technical_Forum(object):
     def setup_class(self):
         self.login = TestAdminLogin
         print("调用管理员登录")
 
-    # 进入商家发布信息审核审核页
+    # 进入技术论坛审核页
     @pytest.mark.flaky(reruns=3, reruns_delay=2)
     @pytest.mark.dependency(depends=['admin_login'], scope='module')
-    def test_goto_aduit_publish_buss(self):
+    def test_goto_aduit_travel_diary(self):
         """
-        进入商家发布信息审核页
+        进入驴友招募审核页
         :return:
         """
         # 点击关闭弹框
@@ -51,14 +51,14 @@ class Test_Audit_publish_buss(object):
         sleep(2)
         # 点击商家认证信息审核
         self.login.driver.find_element(By.LINK_TEXT,
-                                       '商家发布信息审核').click()
+                                       '技术论坛').click()
         sleep(1)
-        print('\n成功进入商家发布信息审核页!!!')
+        print('\n成功进入技术论坛审核界面!!!')
 
-    # 取消商家发布信息审核删除数据
-    def test_del_cancel_publish_buss(self):
+    # 取消技术论坛审核删除数据
+    def test_del_cancel_Technical_Forum(self):
         """
-        这是商家发布信息审核删除取消操作用例
+        这是技术论坛删除取消操作用例
         :return:
         """
         # 获取原列表总数值
@@ -86,9 +86,9 @@ class Test_Audit_publish_buss(object):
         sleep(1)
 
     # 删除技术论坛审核数据
-    def test_del_suc_publish_buss(self):
+    def test_del_suc_Technical_Forum(self):
         """
-        这是商家发布信息审核删除操作用例--删除的是列表中第一条数据
+        这是技术论坛删除操作用例--删除的是列表中第一条数据
         :return:
         """
         # 获取列表数
@@ -115,9 +115,9 @@ class Test_Audit_publish_buss(object):
         print('删除成功！！！')
         sleep(1)
 
-    def test_Audit_publish_buss(self):
+    def test_Audit_Technical_Forum(self):
         '''
-        这里是商家发布信息审核
+        这里是技术论坛审核
         :return:
         '''
 
@@ -152,7 +152,7 @@ class Test_Audit_publish_buss(object):
                                            '//button[@class="ant-btn ant-btn-primary ng-star-inserted"]').click()
             sleep(2)
             # 先根据title来查询，因为到最后了
-            self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入名称']").send_keys(key)
+            self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入活动名称']").send_keys(key)
             # 点击查询按钮
             self.login.driver.find_element(By.CLASS_NAME, 'ant-btn-primary').click()
             # 获取新状态
@@ -184,7 +184,7 @@ class Test_Audit_publish_buss(object):
                                            '//button[@class="ant-btn ant-btn-primary ng-star-inserted"]').click()
             sleep(2)
             # 先根据title来查询，因为到别的位置了
-            self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入名称']").send_keys(key)
+            self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入活动名称']").send_keys(key)
             # 点击查询按钮
             self.login.driver.find_element(By.CLASS_NAME, 'ant-btn-primary').click()
             # 获取新状态
@@ -198,15 +198,15 @@ class Test_Audit_publish_buss(object):
 
         sleep(2)
 
-    def test_search_publish_buss_not_exist(self):
+    def test_search_Technical_Forum_not_exist(self):
         '''
-        这里是查询商家发布信息审核列表--不存在
+        这里是查询技术论坛审核列表--不存在
         :return:
         '''
         # 定义查询关键字
         keys = '不存在'
         # 填入查询内容
-        self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入名称']").send_keys(keys)
+        self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入活动名称']").send_keys(keys)
         # 点击查询按钮
         self.login.driver.find_element(By.CLASS_NAME, 'ant-btn-primary').click()
         # 定位查询结果内容
@@ -217,9 +217,9 @@ class Test_Audit_publish_buss(object):
         print('查询不存在结束')
         sleep(1)
 
-    def test_publish_buss_Forum_exist(self):
+    def test_search_Technical_Forum_exist(self):
         '''
-        这里是查询商家发布信息审核列表--存在
+        这里是查询技术论坛信息审核列表--存在
         :return:
         '''
         # 刷新页面
@@ -241,7 +241,7 @@ class Test_Audit_publish_buss(object):
         self.login.driver.find_element(By.XPATH,
                                        '/html/body/app-root/div/app-default/app-def-layout-content/nz-layout/nz-layout/nz-layout/nz-content/div/div/app-dept/div/nz-card/div/form/div/div[3]/a/span').click()
         # 输入标题到搜索框
-        self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入名称']").send_keys(
+        self.login.driver.find_element(By.XPATH, "//input[@name='name' and @placeholder='请输入活动名称']").send_keys(
             exist_title.text)
 
         # 展开类型分类
@@ -287,7 +287,7 @@ class Test_Audit_publish_buss(object):
         print("列表查询到的数为：", research_total)
         # 断言(好像不太严谨，但是目前方法准测是是商家名称唯一，存在一条数据)
         assert research_total == 1
-        print('根据查询名称与审核状态能够正确查询！！！查询数为', research_total)
+        print('根据查询活动名称与审核状态能够正确查询！！！查询数为', research_total)
         sleep(2)
 
     def teardown_class(self):

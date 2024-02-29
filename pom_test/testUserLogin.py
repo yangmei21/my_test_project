@@ -16,7 +16,7 @@ class TestUserLogin(object):
     ]
 
     def setup_class(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Firefox()
         self.loginPage = UserLoginPage(self.driver)
         self.loginPage.goto_login_page()
 

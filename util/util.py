@@ -37,19 +37,20 @@ def save_coolie(driver, path):
         print(cookies)
         pickle.dump(cookies, filehandler)
 
+
 # 加载cookie
-def load_cookie(driver,path):
-    with open(path,'rb')as cookiesfile:
-        cookies=pickle.load(cookiesfile)
+def load_cookie(driver, path):
+    with open(path, 'rb') as cookiesfile:
+        cookies = pickle.load(cookiesfile)
         for cookie in cookies:
             driver.add_cookie(cookie)
 
 
-def get_total(driver,id):
+def get_total(driver, id):
     # 获取列表数据总数
     # ！！！
     # 定位包含总数据条数信息的元素
-    total_records_element = driver.find_element(By.CSS_SELECTOR,id)
+    total_records_element = driver.find_element(By.CSS_SELECTOR, id)
 
     # 获取元素文本信息
     if total_records_element:
@@ -62,3 +63,20 @@ def get_total(driver,id):
     else:
         print("未获取到总数据提条数")
         return False
+
+
+
+def take_screenshot(self):
+    """
+    截图并保存在根目录下的Screenshots文件夹下
+    :param none:
+    """
+    file_path = os.path.dirname(os.getcwd()) + '/Screenshots/'
+    rq = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+    screen_name = file_path + rq + '.png'
+    try:
+        self.driver.get_screenshot_as_file(screen_name)
+        print("开始截图并保存")
+
+    except Exception as e:
+        print("出现异常", format(e))
